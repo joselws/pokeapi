@@ -8,8 +8,8 @@ const Card = ({url}) => {
     // Get each pokemon data on load
     useEffect(() => {
         fetchPokemon();
-    }, [])
-
+    }, [url])
+    
     // Fetch function api
     const fetchPokemon = async () => {
         const res = await fetch(url);
