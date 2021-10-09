@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const Pokemon = () => {
+const Pokemon = ({ clearRedirect }) => {
     // Identifier is the ID or pokemon name used to fetch the pokemon
-    const [identifier, setIdentifier] = useState('');
     const [pokemon, setPokemon] = useState({});
 
     // Get the parameter in the URL used to fetch the pokemon
@@ -11,14 +10,11 @@ const Pokemon = () => {
     
     useEffect(() => {
         fetchPokemon();
-    }, [identifier])
+    }, [id_or_name])
 
     // Get pokemon data and update the state
     const fetchPokemon = async () => {
-        setIdentifier(id_or_name);
-        console.log(identifier);
-
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${identifier}/`);
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id_or_name}/`);
         const data = await res.json();
         console.log(data);
         setPokemon(data);

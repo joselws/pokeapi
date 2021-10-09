@@ -1,0 +1,12 @@
+.App {
+    background-image: url("pokeballs.jpg");
+    border: 1px solid white;
+}
+
+.container {
+    margin: 100px 300px;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0px 0px 25px 7px gray;
+    border-radius: 30px;
+}
