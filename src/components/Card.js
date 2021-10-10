@@ -33,10 +33,13 @@ const Card = ({url}) => {
                 <p>Loading...</p>
             ) : (
                 <>
-                    <Link to={`/pokemons/${pokemon.name}`}>
+                    <Link className="links" to={`/pokemons/${pokemon.name}`}>
                         <h3>No. {pokemon.id} - {capitalize(pokemon.name)}</h3>
                     </Link>
-                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+
+                    <Link className="links" to={`/pokemons/${pokemon.name}`}>
+                        <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                    </Link>
                     <h5>
                         Types: {" "}
                         {pokemon.types.map(type => {

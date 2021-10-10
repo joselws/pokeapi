@@ -54,27 +54,48 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div className="container">
-          <h1>Pokemon names</h1>
+        <div className="body">
+          <h1 className="title">Pokedex</h1>
 
           <form onSubmit={handleSubmit}>
-            <input type="text" name="search" placeholder="Search for pokemon name or number" onChange={handleChange} value={search} />
-            <input type="submit" value="Search" />
+            <div class="row search-form">
+              <label htmlFor="search" className="col-form-label col-3">Search for your Pokemon:</label>
+              
+              <div className="col-7">
+                <input type="text" 
+                  name="search" 
+                  placeholder="Search by pokemon name or number" 
+                  onChange={handleChange} 
+                  value={search} 
+                  className='form-control'
+                  id="search"
+                />
+              </div>
+
+              <div className="col-2">
+                <input type="submit" value="Search" className="btn btn-danger" />
+              </div>
+
+            </div>
           </form>
 
-          <Link to='/pokemons'>Pokemon list</Link>
+          <Link className="links" to='/pokemons'>Pokemon list</Link>
 
           { redirect && <Redirect to={redirect} /> }
 
           <Switch>
+            <Route path='/' exact>
+              <Redirect to='/pokemons' />
+            </Route>
+            
             <Route path='/pokemons' exact>
               {pokemons.map(pokemon => {
                 return(
                     <Card url={pokemon.url} />
                 )
               })}
-              {previous && <button onClick={() => fetchPokemons(previous)}>Previous</button>}
-              {next && <button onClick={() => fetchPokemons(next)}>Next</button>}
+              {previous && <button className="btn btn-danger me-4" onClick={() => fetchPokemons(previous)}>Previous</button>}
+              {next && <button className="btn btn-danger me-4" onClick={() => fetchPokemons(next)}>Next</button>}
             </Route>
 
             <Route path='/pokemons/:id_or_name' component={Pokemon} />
