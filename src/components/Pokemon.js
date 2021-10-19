@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const Pokemon = ({ clearRedirect }) => {
+const Pokemon = () => {
     // Identifier is the ID or pokemon name used to fetch the pokemon
     const [pokemon, setPokemon] = useState({});
 

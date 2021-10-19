@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import Card from './components/Card';
 import Pokemon from './components/Pokemon';
+import Types from './components/Types';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 
 function App() {
@@ -99,6 +100,7 @@ function App() {
             </Route>
 
             <Route path='/pokemons/:id_or_name' component={Pokemon} />
+            <Route path='/types/:id_or_name' component={Types} />
           </Switch>
         </div>
       </Router>
