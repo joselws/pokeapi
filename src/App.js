@@ -21,8 +21,6 @@ function App() {
   const fetchPokemons = async (url = 'https://pokeapi.co/api/v2/pokemon/') => {
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
-    console.log(data.results);
     setPokemons(data.results);
     setNext(data.next);
     setPrevious(data.previous);
@@ -47,7 +45,6 @@ function App() {
 
     // clear the search bar
     setSearch('');
-    console.log(search);
   }
 
 

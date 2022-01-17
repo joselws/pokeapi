@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Pokemon = () => {
     // Identifier is the ID or pokemon name used to fetch the pokemon
@@ -16,7 +16,6 @@ const Pokemon = () => {
     const fetchPokemon = async () => {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id_or_name}/`);
         const data = await res.json();
-        console.log(data);
         setPokemon(data);
     }
 
@@ -44,8 +43,19 @@ const Pokemon = () => {
                         Types: {" "}
                         {pokemon.types.map(type => {
                             return (
-                                <>
+                                <Link className="links" to={`/types/${type.type.name}`}>
                                     {capitalize(type.type.name)} {" "}  
+                                </Link>
+                            )
+                        })}
+                    </h3>
+
+                    <h3>
+                        Abilities: {' '}
+                        {pokemon.abilities.map(ability => {
+                            return (
+                                <>
+                                    {capitalize(ability.ability.name)} {" "} {ability.is_hidden ? "(Hidden) " : ""}
                                 </>
                             )
                         })}

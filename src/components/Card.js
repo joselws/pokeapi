@@ -17,7 +17,6 @@ const Card = ({url}) => {
         const res = await fetch(url);
         const data = await res.json();
         setPokemon(data);
-        console.log(data);
     }
 
     // Capitalize strings
@@ -44,9 +43,9 @@ const Card = ({url}) => {
                         Types: {" "}
                         {pokemon.types.map(type => {
                             return (
-                                <>
+                                <Link className="links" to={`/types/${type.type.name}`}>
                                     {capitalize(type.type.name)} {" "}  
-                                </>
+                                </Link>
                             )
                         })}
                     </h5>

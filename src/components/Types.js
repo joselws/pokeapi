@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Types = () => {
     const [type, setType] = useState({});
@@ -14,7 +14,12 @@ const Types = () => {
         const response = await fetch(`https://pokeapi.co/api/v2/type/${id_or_name}/`);
         const data = await response.json();
         setType(data);
-        console.log(data);
+    }
+
+    // Capitalize strings
+    const capitalize = (string) => {
+        const first_letter = string.charAt(0);
+        return first_letter.toUpperCase() + string.slice(1);
     }
 
     return (
@@ -23,73 +28,85 @@ const Types = () => {
                 <p>Loading...</p>
             ) : (
                 <>
-                    <h2>Type: { type.name }</h2>
+                    <h2>Type: { capitalize(type.name) }</h2>
 
-                    <h3>Is super effective against: </h3>
+                    <p className="type">
+                        Is super effective against: {' '}
                         { type.damage_relations.double_damage_to.length === 0 ? 'None' 
                             : type.damage_relations.double_damage_to.map(opponentType => {
                                 return (
-                                    <>
-                                        {opponentType.name} {' '}
-                                    </>
+                                    <Link className="links" to={`/types/${opponentType.name}`}>
+                                        {capitalize(opponentType.name)} {' '}
+                                    </Link>
                                 )
                             })
                         }
+                    </p>
 
-                    <h3>Receive super effective hits from: </h3> 
+                    <p className="type">
+                        Receive super effective hits from: {' '} 
                         { type.damage_relations.double_damage_from.length === 0 ? 'None' 
                             : type.damage_relations.double_damage_from.map(opponentType => {
                                 return (
-                                    <>
-                                        {opponentType.name} {' '}
-                                    </>
+                                    <Link className="links" to={`/types/${opponentType.name}`}>
+                                        {capitalize(opponentType.name)} {' '}
+                                    </Link>
                                 )
                             }) 
                         }
+                    </p>
 
-                    <h3>Do half damage against: </h3>
+                    <p className="type">
+                        Does half damage against: {' '}
                         { type.damage_relations.half_damage_to.length === 0 ? 'None' 
                             : type.damage_relations.half_damage_to.map(opponentType => {
                                 return (
-                                    <>
-                                        {opponentType.name} {' '}
-                                    </>
+                                    <Link className="links" to={`/types/${opponentType.name}`}>
+                                        {capitalize(opponentType.name)} {' '}
+                                    </Link>
                                 ) 
                             }) 
                         }
+                    </p>
 
-                    <h3>Receives half damage from: </h3>
+                    <p className="type">
+                        Receives half damage from: {' '}
                         { type.damage_relations.half_damage_from.length === 0 ? 'None' 
                             : type.damage_relations.half_damage_from.map(opponentType => {
                                 return (
-                                    <>
-                                        {opponentType.name} {' '}
-                                    </>
+                                    <Link className="links" to={`/types/${opponentType.name}`}>
+                                        {capitalize(opponentType.name)} {' '}
+                                    </Link>
                                 )
                             }) 
                         }
+                    </p>
 
-                    <h3>Do no damage to: </h3>
+                    <p className="type">
+                        Does no damage to: {' '}
                         { type.damage_relations.no_damage_to.length === 0 ? 'None' 
                             : type.damage_relations.no_damage_to.map(opponentType => {
                                 return (
-                                    <>
-                                        {opponentType.name} {' '}
-                                    </>
+                                    <Link className="links" to={`/types/${opponentType.name}`}>
+                                        {capitalize(opponentType.name)} {' '}
+                                    </Link>
                                 )
                             }) 
                         }
+                    </p>
 
-                    <h3>Receives no damage from: </h3>
+                    <p className="type">
+                        Receives no damage from: {' '}
                         { type.damage_relations.no_damage_from.length === 0 ? 'None' 
                             : type.damage_relations.no_damage_from.map(opponentType => {
                                 return (
-                                    <>
-                                        {opponentType.name} {' '}
-                                    </>
+                                    <Link className="links" to={`/types/${opponentType.name}`}>
+                                        {capitalize(opponentType.name)} {' '}
+                                    </Link>
                                 )
                             }) 
                         }
+                    </p>
 
                 </>
             )}
