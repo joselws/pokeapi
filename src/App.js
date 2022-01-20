@@ -57,7 +57,7 @@ function App() {
 
           <form onSubmit={handleSubmit}>
             <div class="row search-form">
-              <label htmlFor="search" className="col-form-label col-3">Search for your Pokemon:</label>
+              <label htmlFor="search" className="col-form-label col-md-3">Search for your Pokemon:</label>
               
               <div className="col-7">
                 <input type="text" 
